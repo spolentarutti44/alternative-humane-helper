@@ -21,9 +21,38 @@
 /laravel-data/npm-debug.log
 /laravel-data/yarn-error.log
 
-# Docker volumes
-/drupal-data/*
-!/drupal-data/.gitkeep
+# Drupal - Keep these important files
+!/drupal-data/composer.json
+!/drupal-data/composer.lock
+!/drupal-data/web/
+
+# Drupal - Composer-managed dependencies and core
+/drupal-data/vendor/
+/drupal-data/web/core/
+/drupal-data/web/vendor/
+
+# Drupal - User-generated content and uploads
+/drupal-data/web/sites/*/files/
+/drupal-data/web/sites/*/private/
+
+# Drupal - Sensitive configuration files (but keep templates)
+/drupal-data/web/sites/default/settings.php
+/drupal-data/web/sites/default/settings.local.php
+/drupal-data/web/sites/default/services.yml
+!/drupal-data/web/sites/default/default.settings.php
+!/drupal-data/web/sites/default/default.services.yml
+
+# Drupal - Cache and temporary files
+/drupal-data/web/sites/*/translations/
+/drupal-data/web/sites/simpletest/
+
+# Drupal - Keep structure folders and custom code
+!/drupal-data/web/modules/
+!/drupal-data/web/modules/custom/
+!/drupal-data/web/themes/
+!/drupal-data/web/themes/custom/
+!/drupal-data/web/profiles/
+!/drupal-data/web/profiles/custom/
 
 # IDE
 /.idea
