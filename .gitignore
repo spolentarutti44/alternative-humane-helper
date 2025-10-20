@@ -1,0 +1,42 @@
+# Laravel
+/laravel-data/node_modules
+/laravel-data/public/hot
+/laravel-data/public/storage
+/laravel-data/storage/*.key
+/laravel-data/storage/framework/cache/*
+/laravel-data/storage/framework/sessions/*
+/laravel-data/storage/framework/views/*
+/laravel-data/storage/logs/*
+!/laravel-data/storage/framework/cache/.gitignore
+!/laravel-data/storage/framework/sessions/.gitignore
+!/laravel-data/storage/framework/views/.gitignore
+!/laravel-data/storage/logs/.gitignore
+/laravel-data/vendor
+/laravel-data/.env
+/laravel-data/.env.backup
+/laravel-data/.phpunit.result.cache
+/laravel-data/Homestead.json
+/laravel-data/Homestead.yaml
+/laravel-data/auth.json
+/laravel-data/npm-debug.log
+/laravel-data/yarn-error.log
+
+# Docker volumes
+/drupal-data/*
+!/drupal-data/.gitkeep
+
+# IDE
+/.idea
+/.vscode
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+
+# Database
+*.sqlite
+*.sqlite-journal
+

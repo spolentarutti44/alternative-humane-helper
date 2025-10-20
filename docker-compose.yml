@@ -1,0 +1,92 @@
+services:
+  # Drupal for public nonprofit website
+  drupal:
+    image: drupal:11
+    container_name: nonprofit-drupal
+    ports:
+      - "80:80"
+    volumes:
+      - ./drupal-data:/opt/drupal
+    environment:
+      - DRUPAL_DATABASE_HOST=drupal-db
+      - DRUPAL_DATABASE_PORT=3306
+      - DRUPAL_DATABASE_NAME=drupaldb
+      - DRUPAL_DATABASE_USERNAME=drupaluser
+      - DRUPAL_DATABASE_PASSWORD=drupalpass
+    depends_on:
+      - drupal-db
+    networks:
+      - nonprofit-network
+
+  # MariaDB for Drupal
+  drupal-db:
+    image: mariadb:10.11
+    container_name: nonprofit-drupal-db
+    volumes:
+      - drupal-db-data:/var/lib/mysql
+    environment:
+      - MARIADB_ROOT_PASSWORD=drupalroot
+      - MARIADB_DATABASE=drupaldb
+      - MARIADB_USER=drupaluser
+      - MARIADB_PASSWORD=drupalpass
+    networks:
+      - nonprofit-network
+
+  # Laravel for admin backend/frontend
+  laravel:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nonprofit-laravel
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./laravel-data:/var/www/html
+    environment:
+      - DB_HOST=laravel-db
+      - DB_PORT=3306
+      - DB_DATABASE=laraveldb
+      - DB_USERNAME=laraveluser
+      - DB_PASSWORD=laravelpass
+    depends_on:
+      - laravel-db
+    networks:
+      - nonprofit-network
+    command: tail -f /dev/null
+
+  # MariaDB for Laravel
+  laravel-db:
+    image: mariadb:10.11
+    container_name: nonprofit-laravel-db
+    volumes:
+      - laravel-db-data:/var/lib/mysql
+    environment:
+      - MARIADB_ROOT_PASSWORD=laravelroot
+      - MARIADB_DATABASE=laraveldb
+      - MARIADB_USER=laraveluser
+      - MARIADB_PASSWORD=laravelpass
+    ports:
+      - "3307:3306"
+    networks:
+      - nonprofit-network
+
+  # Adminer for database management
+  adminer:
+    image: adminer:latest
+    container_name: nonprofit-adminer
+    ports:
+      - "8080:8080"
+    depends_on:
+      - drupal-db
+      - laravel-db
+    networks:
+      - nonprofit-network
+
+volumes:
+  drupal-db-data:
+  laravel-db-data:
+
+networks:
+  nonprofit-network:
+    driver: bridge
+
