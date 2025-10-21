@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\API\AnimalController;
+use App\Http\Controllers\API\FurryFriendController;
 use App\Http\Controllers\API\DonationController;
 use App\Http\Controllers\API\DonorController;
 use App\Http\Controllers\API\EventController;
@@ -19,8 +19,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Animals API
-Route::apiResource('animals', AnimalController::class);
+// Furry Friends API
+Route::apiResource('furry-friends', FurryFriendController::class);
 
 // Fosters API
 Route::apiResource('fosters', FosterController::class);

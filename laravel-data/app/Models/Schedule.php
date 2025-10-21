@@ -13,7 +13,7 @@ class Schedule extends Model
         'title',
         'description',
         'type',
-        'animal_id',
+        'furry_friend_id',
         'foster_id',
         'volunteer_id',
         'start_time',
@@ -28,9 +28,9 @@ class Schedule extends Model
         'end_time' => 'datetime',
     ];
 
-    public function animal()
+    public function furryFriend()
     {
-        return $this->belongsTo(Animal::class);
+        return $this->belongsTo(FurryFriend::class);
     }
 
     public function foster()

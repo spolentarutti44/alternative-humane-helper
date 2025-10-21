@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
-@section('title', 'Animals Management')
-@section('page-title', 'Animals')
+@section('title', 'Furry Friends Management')
+@section('page-title', 'Furry Friends')
 
 @section('content')
 <div class="mb-6 flex justify-between items-center">
@@ -21,7 +21,7 @@
         </select>
     </div>
     <button onclick="openAddModal()" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">
-        <i class="fas fa-plus mr-2"></i>Add New Animal
+        <i class="fas fa-plus mr-2"></i>Add New Furry Friend
     </button>
 </div>
 
@@ -65,7 +65,7 @@
     </div>
 </div>
 
-<!-- Animals Table -->
+<!-- Furry Friends Table -->
 <div class="bg-white rounded-lg shadow overflow-hidden">
     <table class="min-w-full">
         <thead class="bg-gray-50">
@@ -80,7 +80,7 @@
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
             </tr>
         </thead>
-        <tbody id="animalsTableBody" class="bg-white divide-y divide-gray-200">
+        <tbody id="furryFriendsTableBody" class="bg-white divide-y divide-gray-200">
             <!-- Dynamic content loaded via JavaScript -->
         </tbody>
     </table>
@@ -93,47 +93,47 @@
 <script>
     let currentPage = 1;
     
-    async function loadAnimals(page = 1) {
+    async function loadFurryFriends(page = 1) {
         const status = document.getElementById('statusFilter').value;
         const species = document.getElementById('speciesFilter').value;
         
-        let url = `/api/animals?page=${page}`;
+        let url = `/api/furry-friends?page=${page}`;
         if (status) url += `&status=${status}`;
         if (species) url += `&species=${species}`;
         
         const response = await fetch(url);
         const data = await response.json();
         
-        displayAnimals(data.data);
+        displayFurryFriends(data.data);
         updateStats();
     }
     
-    function displayAnimals(animals) {
-        const tbody = document.getElementById('animalsTableBody');
-        tbody.innerHTML = animals.map(animal => `
+    function displayFurryFriends(furryFriends) {
+        const tbody = document.getElementById('furryFriendsTableBody');
+        tbody.innerHTML = furryFriends.map(furryFriend => `
             <tr>
                 <td class="px-6 py-4 whitespace-nowrap">
-                    <img src="${animal.photo_url || '/images/default-animal.png'}" 
-                         class="h-12 w-12 rounded-full object-cover" alt="${animal.name}">
+                    <img src="${furryFriend.photo_url || '/images/default-animal.png'}" 
+                         class="h-12 w-12 rounded-full object-cover" alt="${furryFriend.name}">
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap font-medium">${animal.name}</td>
-                <td class="px-6 py-4 whitespace-nowrap">${animal.species}</td>
-                <td class="px-6 py-4 whitespace-nowrap">${animal.age || 'Unknown'}</td>
-                <td class="px-6 py-4 whitespace-nowrap capitalize">${animal.gender}</td>
+                <td class="px-6 py-4 whitespace-nowrap font-medium">${furryFriend.name}</td>
+                <td class="px-6 py-4 whitespace-nowrap">${furryFriend.species}</td>
+                <td class="px-6 py-4 whitespace-nowrap">${furryFriend.age || 'Unknown'}</td>
+                <td class="px-6 py-4 whitespace-nowrap capitalize">${furryFriend.gender}</td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                    <span class="px-2 py-1 text-xs rounded-full ${getStatusColor(animal.status)}">
-                        ${animal.status}
+                    <span class="px-2 py-1 text-xs rounded-full ${getStatusColor(furryFriend.status)}">
+                        ${furryFriend.status}
                     </span>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap">${animal.intake_date}</td>
+                <td class="px-6 py-4 whitespace-nowrap">${furryFriend.intake_date}</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm">
-                    <button onclick="viewAnimal(${animal.id})" class="text-indigo-600 hover:text-indigo-900 mr-3">
+                    <button onclick="viewFurryFriend(${furryFriend.id})" class="text-indigo-600 hover:text-indigo-900 mr-3">
                         <i class="fas fa-eye"></i>
                     </button>
-                    <button onclick="editAnimal(${animal.id})" class="text-blue-600 hover:text-blue-900 mr-3">
+                    <button onclick="editFurryFriend(${furryFriend.id})" class="text-blue-600 hover:text-blue-900 mr-3">
                         <i class="fas fa-edit"></i>
                     </button>
-                    <button onclick="deleteAnimal(${animal.id})" class="text-red-600 hover:text-red-900">
+                    <button onclick="deleteFurryFriend(${furryFriend.id})" class="text-red-600 hover:text-red-900">
                         <i class="fas fa-trash"></i>
                     </button>
                 </td>
@@ -152,21 +152,21 @@
     }
     
     async function updateStats() {
-        const response = await fetch('/api/animals');
+        const response = await fetch('/api/furry-friends');
         const data = await response.json();
-        const animals = data.data;
+        const furryFriends = data.data;
         
-        document.getElementById('availableCount').textContent = animals.filter(a => a.status === 'available').length;
-        document.getElementById('fosteredCount').textContent = animals.filter(a => a.status === 'fostered').length;
-        document.getElementById('adoptedCount').textContent = animals.filter(a => a.status === 'adopted').length;
-        document.getElementById('medicalCount').textContent = animals.filter(a => a.status === 'medical').length;
+        document.getElementById('availableCount').textContent = furryFriends.filter(f => f.status === 'available').length;
+        document.getElementById('fosteredCount').textContent = furryFriends.filter(f => f.status === 'fostered').length;
+        document.getElementById('adoptedCount').textContent = furryFriends.filter(f => f.status === 'adopted').length;
+        document.getElementById('medicalCount').textContent = furryFriends.filter(f => f.status === 'medical').length;
     }
     
-    document.getElementById('statusFilter').addEventListener('change', () => loadAnimals());
-    document.getElementById('speciesFilter').addEventListener('change', () => loadAnimals());
+    document.getElementById('statusFilter').addEventListener('change', () => loadFurryFriends());
+    document.getElementById('speciesFilter').addEventListener('change', () => loadFurryFriends());
     
-    // Load animals on page load
-    loadAnimals();
+    // Load furry friends on page load
+    loadFurryFriends();
 </script>
 @endsection
 

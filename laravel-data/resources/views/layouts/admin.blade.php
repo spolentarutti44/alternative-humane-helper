@@ -21,9 +21,9 @@
                     <i class="fas fa-home mr-3"></i>
                     Dashboard
                 </a>
-                <a href="/admin/animals" class="flex items-center px-6 py-3 hover:bg-indigo-800 transition {{ request()->is('admin/animals*') ? 'bg-indigo-800 border-l-4 border-white' : '' }}">
+                <a href="/admin/furry-friends" class="flex items-center px-6 py-3 hover:bg-indigo-800 transition {{ request()->is('admin/furry-friends*') ? 'bg-indigo-800 border-l-4 border-white' : '' }}">
                     <i class="fas fa-paw mr-3"></i>
-                    Animals
+                    Furry Friends
                 </a>
                 <a href="/admin/fosters" class="flex items-center px-6 py-3 hover:bg-indigo-800 transition {{ request()->is('admin/fosters*') ? 'bg-indigo-800 border-l-4 border-white' : '' }}">
                     <i class="fas fa-users mr-3"></i>

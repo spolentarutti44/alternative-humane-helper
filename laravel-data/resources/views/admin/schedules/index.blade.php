@@ -65,7 +65,7 @@
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date & Time</th>
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Animal</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Furry Friend</th>
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
             </tr>
@@ -126,7 +126,7 @@
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">${schedule.location || 'N/A'}</td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                    ${schedule.animal ? schedule.animal.name : 'N/A'}
+                    ${schedule.furry_friend ? schedule.furry_friend.name : 'N/A'}
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                     <span class="px-2 py-1 text-xs rounded-full ${getStatusColor(schedule.status)}">

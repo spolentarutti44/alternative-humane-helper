@@ -12,23 +12,23 @@
 
 <!-- Stats Grid -->
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-    <!-- Animals Stats -->
+    <!-- Furry Friends Stats -->
     <div class="bg-white rounded-lg shadow-lg p-6 border-l-4 border-green-500">
         <div class="flex items-center justify-between">
             <div>
-                <p class="text-gray-500 text-sm font-medium uppercase">Total Animals</p>
-                <p class="text-4xl font-bold text-gray-800 mt-2">{{ $stats['total_animals'] ?? 0 }}</p>
+                <p class="text-gray-500 text-sm font-medium uppercase">Total Furry Friends</p>
+                <p class="text-4xl font-bold text-gray-800 mt-2">{{ $stats['total_furry_friends'] ?? 0 }}</p>
                 <p class="text-sm text-green-600 mt-2">
                     <i class="fas fa-check-circle"></i>
-                    {{ $stats['available_animals'] ?? 0 }} Available
+                    {{ $stats['available_furry_friends'] ?? 0 }} Available
                 </p>
             </div>
             <div class="bg-green-100 rounded-full p-4">
                 <i class="fas fa-paw text-3xl text-green-600"></i>
             </div>
         </div>
-        <a href="/admin/animals" class="mt-4 text-sm text-indigo-600 hover:text-indigo-800 inline-block">
-            View all animals →
+        <a href="/admin/furry-friends" class="mt-4 text-sm text-indigo-600 hover:text-indigo-800 inline-block">
+            View all furry friends →
         </a>
     </div>
 
@@ -131,13 +131,13 @@
 
 <!-- Recent Activity -->
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-    <!-- Recent Animals -->
+    <!-- Recent Furry Friends -->
     <div class="bg-white rounded-lg shadow-lg p-6">
         <h3 class="text-xl font-bold text-gray-800 mb-4">
             <i class="fas fa-paw text-indigo-600 mr-2"></i>
-            Recent Animals
+            Recent Furry Friends
         </h3>
-        <div id="recentAnimals" class="space-y-3">
+        <div id="recentFurryFriends" class="space-y-3">
             <p class="text-gray-500 text-sm">Loading...</p>
         </div>
     </div>
@@ -157,29 +157,29 @@
 
 @section('scripts')
 <script>
-    async function loadRecentAnimals() {
-        const response = await fetch('/api/animals?per_page=5');
+    async function loadRecentFurryFriends() {
+        const response = await fetch('/api/furry-friends?per_page=5');
         const data = await response.json();
-        const container = document.getElementById('recentAnimals');
+        const container = document.getElementById('recentFurryFriends');
         
         if (data.data && data.data.length > 0) {
-            container.innerHTML = data.data.map(animal => `
+            container.innerHTML = data.data.map(furryFriend => `
                 <div class="flex items-center justify-between border-b pb-3">
                     <div class="flex items-center">
-                        <img src="${animal.photo_url || '/images/default-animal.png'}" 
-                             class="h-10 w-10 rounded-full object-cover mr-3" alt="${animal.name}">
+                        <img src="${furryFriend.photo_url || '/images/default-animal.png'}" 
+                             class="h-10 w-10 rounded-full object-cover mr-3" alt="${furryFriend.name}">
                         <div>
-                            <p class="font-medium">${animal.name}</p>
-                            <p class="text-xs text-gray-500">${animal.species} • ${animal.status}</p>
+                            <p class="font-medium">${furryFriend.name}</p>
+                            <p class="text-xs text-gray-500">${furryFriend.species} • ${furryFriend.status}</p>
                         </div>
                     </div>
-                    <span class="text-xs px-2 py-1 rounded-full ${getStatusColor(animal.status)}">
-                        ${animal.status}
+                    <span class="text-xs px-2 py-1 rounded-full ${getStatusColor(furryFriend.status)}">
+                        ${furryFriend.status}
                     </span>
                 </div>
             `).join('');
         } else {
-            container.innerHTML = '<p class="text-gray-500 text-sm">No animals yet</p>';
+            container.innerHTML = '<p class="text-gray-500 text-sm">No furry friends yet</p>';
         }
     }
     
@@ -213,7 +213,7 @@
         return colors[status] || 'bg-gray-100 text-gray-800';
     }
     
-    loadRecentAnimals();
+    loadRecentFurryFriends();
     loadUpcomingSchedules();
 </script>
 @endsection

@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('foster_assignments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('foster_id')->constrained()->onDelete('cascade');
-            $table->foreignId('animal_id')->constrained()->onDelete('cascade');
+            $table->foreignId('furry_friend_id')->constrained('furry_friends')->onDelete('cascade');
             $table->date('start_date');
             $table->date('end_date')->nullable();
             $table->enum('status', ['active', 'completed', 'cancelled'])->default('active');

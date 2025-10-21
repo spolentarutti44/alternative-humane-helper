@@ -11,7 +11,7 @@ class ScheduleController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Schedule::with(['animal', 'foster', 'volunteer', 'creator']);
+        $query = Schedule::with(['furryFriend', 'foster', 'volunteer', 'creator']);
         
         if ($request->has('type')) {
             $query->where('type', $request->type);
@@ -32,7 +32,7 @@ class ScheduleController extends Controller
 
     public function show($id)
     {
-        $schedule = Schedule::with(['animal', 'foster', 'volunteer', 'creator'])->findOrFail($id);
+        $schedule = Schedule::with(['furryFriend', 'foster', 'volunteer', 'creator'])->findOrFail($id);
         
         return response()->json($schedule);
     }
@@ -43,7 +43,7 @@ class ScheduleController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'type' => 'required|in:appointment,transport,medical,grooming',
-            'animal_id' => 'nullable|exists:animals,id',
+            'furry_friend_id' => 'nullable|exists:furry_friends,id',
             'foster_id' => 'nullable|exists:fosters,id',
             'volunteer_id' => 'nullable|exists:volunteers,id',
             'start_time' => 'required|date',
@@ -60,7 +60,7 @@ class ScheduleController extends Controller
             'created_by' => auth()->id() ?? 1, // Default to user 1 if not authenticated
         ]));
         
-        return response()->json($schedule->load(['animal', 'foster', 'volunteer']), 201);
+        return response()->json($schedule->load(['furryFriend', 'foster', 'volunteer']), 201);
     }
 
     public function update(Request $request, $id)
@@ -71,7 +71,7 @@ class ScheduleController extends Controller
             'title' => 'sometimes|string|max:255',
             'description' => 'nullable|string',
             'type' => 'sometimes|in:appointment,transport,medical,grooming',
-            'animal_id' => 'nullable|exists:animals,id',
+            'furry_friend_id' => 'nullable|exists:furry_friends,id',
             'foster_id' => 'nullable|exists:fosters,id',
             'volunteer_id' => 'nullable|exists:volunteers,id',
             'start_time' => 'sometimes|date',
@@ -86,7 +86,7 @@ class ScheduleController extends Controller
 
         $schedule->update($request->all());
         
-        return response()->json($schedule->load(['animal', 'foster', 'volunteer']));
+        return response()->json($schedule->load(['furryFriend', 'foster', 'volunteer']));
     }
 
     public function destroy($id)

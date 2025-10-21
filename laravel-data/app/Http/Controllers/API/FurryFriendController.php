@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Animal;
+use App\Models\FurryFriend;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class AnimalController extends Controller
+class FurryFriendController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Animal::with('currentFosterAssignment.foster');
+        $query = FurryFriend::with('currentFosterAssignment.foster');
         
         if ($request->has('status')) {
             $query->where('status', $request->status);
@@ -21,16 +21,16 @@ class AnimalController extends Controller
             $query->where('species', $request->species);
         }
         
-        $animals = $query->orderBy('created_at', 'desc')->paginate(15);
+        $furryFriends = $query->orderBy('created_at', 'desc')->paginate(15);
         
-        return response()->json($animals);
+        return response()->json($furryFriends);
     }
 
     public function show($id)
     {
-        $animal = Animal::with(['fosterAssignments.foster', 'schedules'])->findOrFail($id);
+        $furryFriend = FurryFriend::with(['fosterAssignments.foster', 'schedules'])->findOrFail($id);
         
-        return response()->json($animal);
+        return response()->json($furryFriend);
     }
 
     public function store(Request $request)
@@ -52,14 +52,14 @@ class AnimalController extends Controller
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        $animal = Animal::create($request->all());
+        $furryFriend = FurryFriend::create($request->all());
         
-        return response()->json($animal, 201);
+        return response()->json($furryFriend, 201);
     }
 
     public function update(Request $request, $id)
     {
-        $animal = Animal::findOrFail($id);
+        $furryFriend = FurryFriend::findOrFail($id);
         
         $validator = Validator::make($request->all(), [
             'name' => 'sometimes|string|max:255',
@@ -78,17 +78,17 @@ class AnimalController extends Controller
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        $animal->update($request->all());
+        $furryFriend->update($request->all());
         
-        return response()->json($animal);
+        return response()->json($furryFriend);
     }
 
     public function destroy($id)
     {
-        $animal = Animal::findOrFail($id);
-        $animal->delete();
+        $furryFriend = FurryFriend::findOrFail($id);
+        $furryFriend->delete();
         
-        return response()->json(['message' => 'Animal deleted successfully'], 200);
+        return response()->json(['message' => 'Furry Friend deleted successfully'], 200);
     }
 }
 

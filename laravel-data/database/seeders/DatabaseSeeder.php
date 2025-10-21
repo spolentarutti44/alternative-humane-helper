@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Animal;
+use App\Models\FurryFriend;
 use App\Models\Donation;
 use App\Models\Donor;
 use App\Models\Event;
@@ -47,8 +47,8 @@ class DatabaseSeeder extends Seeder
             'status' => 'active',
         ]);
 
-        // Create sample animals
-        $animals = [
+        // Create sample furry friends
+        $furryFriends = [
             [
                 'name' => 'Max',
                 'species' => 'dog',
@@ -91,8 +91,8 @@ class DatabaseSeeder extends Seeder
             ],
         ];
 
-        foreach ($animals as $animalData) {
-            Animal::create($animalData);
+        foreach ($furryFriends as $furryFriendData) {
+            FurryFriend::create($furryFriendData);
         }
 
         // Create foster families
@@ -124,7 +124,7 @@ class DatabaseSeeder extends Seeder
         // Create foster assignment
         FosterAssignment::create([
             'foster_id' => 1,
-            'animal_id' => 3, // Charlie
+            'furry_friend_id' => 3, // Charlie
             'start_date' => now()->subDays(10),
             'status' => 'active',
             'notes' => 'Doing well, adapting nicely.',
@@ -135,7 +135,7 @@ class DatabaseSeeder extends Seeder
             'title' => 'Vet Checkup - Max',
             'description' => 'Annual checkup and vaccinations',
             'type' => 'medical',
-            'animal_id' => 1,
+            'furry_friend_id' => 1,
             'start_time' => now()->addDays(3)->setTime(10, 0),
             'end_time' => now()->addDays(3)->setTime(11, 0),
             'location' => 'City Veterinary Clinic',
@@ -147,7 +147,7 @@ class DatabaseSeeder extends Seeder
             'title' => 'Grooming Appointment - Luna',
             'description' => 'Regular grooming session',
             'type' => 'grooming',
-            'animal_id' => 2,
+            'furry_friend_id' => 2,
             'start_time' => now()->addDays(5)->setTime(14, 0),
             'end_time' => now()->addDays(5)->setTime(15, 0),
             'location' => 'Pet Grooming Center',

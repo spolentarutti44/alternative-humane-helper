@@ -13,7 +13,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->enum('type', ['appointment', 'transport', 'medical', 'grooming'])->default('appointment');
-            $table->foreignId('animal_id')->nullable()->constrained()->onDelete('set null');
+            $table->foreignId('furry_friend_id')->nullable()->constrained('furry_friends')->onDelete('set null');
             $table->foreignId('foster_id')->nullable()->constrained()->onDelete('set null');
             $table->foreignId('volunteer_id')->nullable()->constrained()->onDelete('set null');
             $table->dateTime('start_time');

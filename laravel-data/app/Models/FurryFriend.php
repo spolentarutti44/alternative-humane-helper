@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Animal extends Model
+class FurryFriend extends Model
 {
     use HasFactory;
+
+    protected $table = 'furry_friends';
 
     protected $fillable = [
         'name',
@@ -29,19 +31,19 @@ class Animal extends Model
 
     public function fosterAssignments()
     {
-        return $this->hasMany(FosterAssignment::class);
+        return $this->hasMany(FosterAssignment::class, 'furry_friend_id');
     }
 
     public function currentFosterAssignment()
     {
-        return $this->hasOne(FosterAssignment::class)
+        return $this->hasOne(FosterAssignment::class, 'furry_friend_id')
             ->where('status', 'active')
             ->latest();
     }
 
     public function schedules()
     {
-        return $this->hasMany(Schedule::class);
+        return $this->hasMany(Schedule::class, 'furry_friend_id');
     }
 
     public function scopeAvailable($query)

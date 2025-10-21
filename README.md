@@ -1,4 +1,4 @@
-# 🐾 Nonprofit Helper - Animal Shelter Management System
+# 🐾 Nonprofit Helper - Furry Friends Shelter Management System
 
 A comprehensive full-stack application designed to help animal shelters and nonprofit organizations manage their operations efficiently. Built with Laravel, Docker, and modern web technologies.
 
@@ -17,7 +17,7 @@ A comprehensive full-stack application designed to help animal shelters and nonp
 
 ### Admin Dashboard
 - **Dashboard Overview**: Real-time statistics and quick actions
-- **Animals Management**: Track animals, their status, medical records, and photos
+- **Furry Friends Management**: Track furry friends, their status, medical records, and photos
 - **Foster Management**: Manage foster families and animal assignments
 - **Scheduler**: Calendar-based scheduling for appointments, medical visits, transport, and grooming
 - **Donation Tracking**: Record and manage donations with automated tax receipt generation
@@ -116,21 +116,21 @@ Once setup is complete, you can access:
 
 ## 📖 Usage
 
-### Managing Animals
+### Managing Furry Friends
 
-1. Navigate to **Animals** in the sidebar
-2. Click "Add New Animal" to register a new animal
+1. Navigate to **Furry Friends** in the sidebar
+2. Click "Add New Furry Friend" to register a new furry friend
 3. Fill in details: name, species, breed, age, gender, status
 4. Upload a photo (optional)
 5. Add medical notes and intake information
-6. Click "Save" to add the animal
+6. Click "Save" to add the furry friend
 
 ### Managing Fosters
 
 1. Navigate to **Fosters** in the sidebar
 2. Click "Add New Foster" to register a foster family
 3. Fill in contact information and capacity
-4. Assign animals to foster families using the "Assign" button
+4. Assign furry friends to foster families using the "Assign" button
 5. Track foster assignments and history
 
 ### Scheduling
@@ -139,7 +139,7 @@ Once setup is complete, you can access:
 2. Switch between Calendar and List views
 3. Click "Add Schedule" to create a new appointment
 4. Select type: appointment, transport, medical, or grooming
-5. Link to animals, fosters, or volunteers
+5. Link to furry friends, fosters, or volunteers
 6. Set date, time, and location
 
 ### Recording Donations
@@ -176,14 +176,14 @@ API routes support Laravel Sanctum authentication. Include the bearer token in h
 Authorization: Bearer {token}
 ```
 
-### Animals API
+### Furry Friends API
 
 ```
-GET    /api/animals              # List all animals
-GET    /api/animals/{id}         # Get animal details
-POST   /api/animals              # Create new animal
-PUT    /api/animals/{id}         # Update animal
-DELETE /api/animals/{id}         # Delete animal
+GET    /api/furry-friends              # List all furry friends
+GET    /api/furry-friends/{id}         # Get furry friend details
+POST   /api/furry-friends              # Create new furry friend
+PUT    /api/furry-friends/{id}         # Update furry friend
+DELETE /api/furry-friends/{id}         # Delete furry friend
 ```
 
 **Query Parameters:**
@@ -200,7 +200,7 @@ POST   /api/fosters                     # Create new foster
 PUT    /api/fosters/{id}                # Update foster
 DELETE /api/fosters/{id}                # Delete foster
 GET    /api/fosters/{id}/assignments    # Get foster assignments
-POST   /api/fosters/{id}/assignments    # Assign animal to foster
+POST   /api/fosters/{id}/assignments    # Assign furry friend to foster
 ```
 
 ### Schedules API
@@ -346,7 +346,7 @@ docker-compose exec laravel php artisan view:clear
 
 ### Manual Testing
 
-1. Test animal CRUD operations
+1. Test furry friend CRUD operations
 2. Test foster assignments
 3. Test schedule creation
 4. Test donation recording
@@ -356,11 +356,11 @@ docker-compose exec laravel php artisan view:clear
 ### Example API Test
 
 ```bash
-# Get all animals
-curl http://localhost:8000/api/animals
+# Get all furry friends
+curl http://localhost:8000/api/furry-friends
 
-# Create a new animal
-curl -X POST http://localhost:8000/api/animals \
+# Create a new furry friend
+curl -X POST http://localhost:8000/api/furry-friends \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Buddy",
@@ -414,5 +414,5 @@ For issues, questions, or contributions, please open an issue on GitHub.
 
 ---
 
-**Made with ❤️ for animal shelters and nonprofit organizations**
+**Made with ❤️ for furry friend shelters and nonprofit organizations**
 

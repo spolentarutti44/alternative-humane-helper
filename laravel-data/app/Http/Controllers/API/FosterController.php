@@ -12,7 +12,7 @@ class FosterController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Foster::with('activeAssignments.animal');
+        $query = Foster::with('activeAssignments.furryFriend');
         
         if ($request->has('status')) {
             $query->where('status', $request->status);
@@ -25,7 +25,7 @@ class FosterController extends Controller
 
     public function show($id)
     {
-        $foster = Foster::with(['assignments.animal', 'schedules'])->findOrFail($id);
+        $foster = Foster::with(['assignments.furryFriend', 'schedules'])->findOrFail($id);
         
         return response()->json($foster);
     }
@@ -85,7 +85,7 @@ class FosterController extends Controller
     public function assignments($id)
     {
         $foster = Foster::findOrFail($id);
-        $assignments = $foster->assignments()->with('animal')->get();
+        $assignments = $foster->assignments()->with('furryFriend')->get();
         
         return response()->json($assignments);
     }
@@ -95,7 +95,7 @@ class FosterController extends Controller
         $foster = Foster::findOrFail($id);
         
         $validator = Validator::make($request->all(), [
-            'animal_id' => 'required|exists:animals,id',
+            'furry_friend_id' => 'required|exists:furry_friends,id',
             'start_date' => 'required|date',
             'notes' => 'nullable|string',
         ]);
@@ -110,16 +110,16 @@ class FosterController extends Controller
 
         $assignment = FosterAssignment::create([
             'foster_id' => $id,
-            'animal_id' => $request->animal_id,
+            'furry_friend_id' => $request->furry_friend_id,
             'start_date' => $request->start_date,
             'notes' => $request->notes,
             'status' => 'active',
         ]);
 
-        // Update animal status
-        $assignment->animal->update(['status' => 'fostered']);
+        // Update furry friend status
+        $assignment->furryFriend->update(['status' => 'fostered']);
         
-        return response()->json($assignment->load('animal'), 201);
+        return response()->json($assignment->load('furryFriend'), 201);
     }
 }
 

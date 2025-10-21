@@ -34,7 +34,7 @@
     <div class="bg-white rounded-lg shadow p-6">
         <div class="flex items-center justify-between">
             <div>
-                <p class="text-gray-500 text-sm">Total Animals Fostered</p>
+                <p class="text-gray-500 text-sm">Total Furry Friends Fostered</p>
                 <p class="text-3xl font-bold text-blue-600" id="animalCount">-</p>
             </div>
             <i class="fas fa-paw text-4xl text-blue-200"></i>
@@ -133,12 +133,12 @@
     
     function updateStats(fosters) {
         const activeCount = fosters.filter(f => f.status === 'active').length;
-        const totalAnimals = fosters.reduce((sum, f) => sum + (f.active_assignments?.length || 0), 0);
+        const totalFurryFriends = fosters.reduce((sum, f) => sum + (f.active_assignments?.length || 0), 0);
         const totalCapacity = fosters.reduce((sum, f) => sum + f.capacity, 0);
-        const availableCapacity = totalCapacity - totalAnimals;
+        const availableCapacity = totalCapacity - totalFurryFriends;
         
         document.getElementById('activeCount').textContent = activeCount;
-        document.getElementById('animalCount').textContent = totalAnimals;
+        document.getElementById('animalCount').textContent = totalFurryFriends;
         document.getElementById('capacityCount').textContent = availableCapacity;
     }
     

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\AnimalController as AdminAnimalController;
+use App\Http\Controllers\Admin\FurryFriendController as AdminFurryFriendController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DonationController as AdminDonationController;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
@@ -23,9 +23,9 @@ Route::get('/', function () {
 Route::prefix('admin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
     
-    // Animals
-    Route::get('/animals', [AdminAnimalController::class, 'index'])->name('admin.animals.index');
-    Route::get('/animals/{id}', [AdminAnimalController::class, 'show'])->name('admin.animals.show');
+    // Furry Friends
+    Route::get('/furry-friends', [AdminFurryFriendController::class, 'index'])->name('admin.furry_friends.index');
+    Route::get('/furry-friends/{id}', [AdminFurryFriendController::class, 'show'])->name('admin.furry_friends.show');
     
     // Fosters
     Route::get('/fosters', [AdminFosterController::class, 'index'])->name('admin.fosters.index');

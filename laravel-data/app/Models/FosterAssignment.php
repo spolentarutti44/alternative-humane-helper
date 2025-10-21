@@ -11,7 +11,7 @@ class FosterAssignment extends Model
 
     protected $fillable = [
         'foster_id',
-        'animal_id',
+        'furry_friend_id',
         'start_date',
         'end_date',
         'status',
@@ -28,9 +28,9 @@ class FosterAssignment extends Model
         return $this->belongsTo(Foster::class);
     }
 
-    public function animal()
+    public function furryFriend()
     {
-        return $this->belongsTo(Animal::class);
+        return $this->belongsTo(FurryFriend::class);
     }
 
     public function scopeActive($query)
@@ -50,7 +50,7 @@ class FosterAssignment extends Model
             'end_date' => now(),
         ]);
         
-        $this->animal->update(['status' => 'available']);
+        $this->furryFriend->update(['status' => 'available']);
     }
 }
 

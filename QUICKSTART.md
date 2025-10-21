@@ -40,9 +40,9 @@ Login with:
 
 ## Your First Tasks
 
-### 1. Add Your First Animal
-1. Click **Animals** in the sidebar
-2. Click **Add New Animal**
+### 1. Add Your First Furry Friend
+1. Click **Furry Friends** in the sidebar
+2. Click **Add New Furry Friend**
 3. Fill in the details
 4. Save!
 
@@ -50,12 +50,12 @@ Login with:
 1. Click **Fosters** in the sidebar
 2. Click **Add New Foster**
 3. Enter contact information
-4. Assign an animal
+4. Assign a furry friend
 
 ### 3. Schedule an Appointment
 1. Click **Scheduler** in the sidebar
 2. Click **Add Schedule**
-3. Select an animal and set date/time
+3. Select a furry friend and set date/time
 4. Save!
 
 ## Troubleshooting
@@ -92,7 +92,7 @@ Check the full [README.md](README.md) for:
 ## Sample Data
 
 The setup automatically creates:
-- 4 sample animals
+- 4 sample furry friends
 - 2 foster families
 - 3 scheduled appointments
 - 3 donations
