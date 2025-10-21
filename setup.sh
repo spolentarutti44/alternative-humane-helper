@@ -55,8 +55,7 @@ if [ ! -f "laravel-data/artisan" ]; then
     echo "🎨 Building frontend assets..."
     docker-compose exec laravel npm run build
     
-    echo "🚀 Starting Laravel development server..."
-    docker-compose exec -d laravel php artisan serve --host=0.0.0.0 --port=8000
+    echo "✅ Laravel will start automatically with Docker"
 else
     echo "✅ Laravel already installed"
     
@@ -64,8 +63,7 @@ else
     echo "🗄️  Running database migrations..."
     docker-compose exec -T laravel php artisan migrate
     
-    echo "🚀 Starting Laravel development server..."
-    docker-compose exec -d laravel php artisan serve --host=0.0.0.0 --port=8000
+    echo "✅ Laravel will start automatically with Docker"
 fi
 
 echo ""
@@ -74,7 +72,7 @@ echo ""
 echo "📍 Your application is now running:"
 echo "   - Drupal Website: http://localhost"
 echo "   - Laravel Admin: http://localhost:8000"
-echo "   - Adminer (DB): http://localhost:8080"
+echo "   - Adminer (DB): http://localhost:8082"
 echo ""
 echo "🔑 Default Admin Credentials:"
 echo "   Email: admin@nonprofit.com"
